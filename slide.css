@@ -1,0 +1,16 @@
+@charset"utf-8";
+
+.arrow,
+.arrow label {
+    position: absolute;
+    top: 0
+    width: 50px;
+    height: 100%;
+}
+.prev,
+.arrow label {
+    left: 0;
+}
+.next {
+    right: 0;
+}

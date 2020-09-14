@@ -1,0 +1,307 @@
+@charset"utf-8";
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    color: #333;
+    fong-size: 13px;
+    line-height: 150%;
+}
+/*-------------------wrapper---------------------*/
+#wrapper {
+    width: 100%;
+    margin: auto;
+    padding: 0px;
+    border: 0px;
+    background-color: #FFF;
+    top: 10px;
+}
+/*-----------header-----------*/
+
+#ec-header{
+    width: 100%;
+}
+
+#ec-header {
+    background-color:blue;
+    margin: 0px;
+    padding: 0px;
+    display:flex;
+}
+#ec-header h1{
+    margin: 20px 20px;
+}
+.ec-header-right{
+    background-color: red;
+    margin-left: 50%;
+    text-decoration: none;
+}
+#ec-header ul{
+      list-style-type: none;
+}
+#ec-header ul li{
+    text-align: center;
+}
+#ec-header ul li a{
+    display: block;
+    height: 20px;
+     text-decoration: none;
+     background-color: green;
+}
+
+/*-------------menu------------*/
+#menu{
+    width: 100%;
+    height: 3rem;
+    background:#001b34;
+}
+
+.gnav {
+    display: flex;
+    height: 2rem;
+    margin: 0 auto;
+    width: 1000px;
+}
+.gnav > li {
+    width: 25%;
+}
+/*すべてのリスト、リンク共通*/
+.gnav li {
+    list-style: none;
+    position: relative;
+}
+.gnav li a {
+    background: #001b34;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    color: #fff;
+    display: block;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+/*子要素以降共通*/
+.gnav li li {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity .5s;
+    z-index: 2;
+}
+.gnav li li a{
+    border-top: 1px solid #eee;
+}
+.gnav li:hover > ul > li {
+    height: 3rem;
+    opacity: 1;
+    overflow: visible;
+}
+
+.gnav li ul li ul{
+    left: 76%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+/*色指定*/
+.gnav li:hover a{/*親階層*/
+    background: #00305c;
+}
+.gnav li li a {/*子階層*/
+    background: #00305c;
+}
+.gnav li li:hover a {
+    background: #004789;
+}
+.gnav li ul li ul li a {/*孫階層*/
+    background: #004789;
+}
+.gnav li ul li ul li:hover a {
+    background: #0065c1;
+}
+.gnav li ul li ul li ul li a {/*ひ孫階層*/
+    background: #0065c1;
+}
+.gnav li ul li ul li ul li:hover > a {
+    background : #1e7dd4;
+}
+/*リストに▶︎をつける*/
+.gnav > li > ul:before {
+    border: 5px solid transparent;
+    border-top: 5px solid #fff;
+    content: "";
+    right: 1rem;
+    position: absolute;
+    top: 25px;
+    transform: translateY(-40%);
+}
+.gnav li ul li ul:before {
+    border: 5px solid transparent;
+    border-left: 5px solid #fff;
+    content: "";
+    left: 20px;
+    position: absolute;
+    top: 25px;
+    transform: translateY(-50%);
+}
+.gnav li:nth-child(5) ul li ul:before {
+    border: 5px solid transparent;
+    border-right: 5px solid #fff;
+    left: auto;
+    right: -20px;
+}
+/*-------------slideshow------------*/
+ .slideshow {
+          position: relative;
+          overflow: hidden;
+        }
+        input[name="slideshow"] {
+          display: none;
+        }
+        
+        /*::::::::: slideContents :::::::*/
+        .slideContents {
+          
+          position: relative;
+          
+          background: lightSeaGreen;
+          text-align: center;
+          -webkit-user-select: none;
+          user-select: none;
+          
+          transition: transform .6s;
+        }
+        .slideContents section {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          transform: translateX(100%);
+          transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+      
+        .slideContents section img {
+          max-width: 100%;
+          padding: 0 50px;
+          box-sizing: border-box;
+          vertical-align: middle;
+        }
+        
+        /*:::::::arrows:::::::*/
+        .arrow,
+        .arrow label,
+        .arrow .ico {
+          position: absolute;
+        }
+        .arrow {
+          top: 0;
+          margin: 0;
+          transition: background .3s;
+        }
+        .prev {
+          left: 0;
+        }
+        .next {
+          right: 0;
+        }
+        .arrow:hover {
+          background: rgba(255,255,255,.2);
+          
+          
+        }
+        .arrow,
+        .arrow label {
+          cursor: pointer;
+          width: 50px;
+          height: 100%;
+        }
+        .arrow label {
+          top: 0;
+          left: 0;
+          z-index: 1;
+        }
+        .arrow .ico {
+          top: calc(50% - 6px);
+          width: 12px;
+          height: 12px;
+          border-top: 3px solid #fff;
+          opacity: 0;
+        }
+        .prev .ico{
+          left: 50%;
+          border-left: 3px solid #fff;
+          transform: rotate(-45deg);
+          transition: left .3s cubic-bezier(0.215, 0.61, 0.355,1),opacity .3s;
+        }
+        .next .ico {
+          right: 50%;
+          border-right: 3px solid #fff;
+          transform: rotate(45deg);
+          transition: right .3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity .3s;
+        }
+        .arrow:hover .ico{
+          opacity: .6;
+        }
+        .prev:hover .ico {
+          left: calc(50% - 6px);
+        }
+        .next:hover .ico {
+          right: calc(50% - 6px);
+        }
+        
+        /*:::::: mechanism ::::::*/
+        #switch1:checked ~ .slideContents #slide1,
+        #switch2:checked ~ .slideContents #slide2,
+        #switch3:checked ~ .slideContents #slide3,
+        #switch4:checked ~ .slideContents #slide4,
+        #switch5:checked ~ .slideContents #slide5{
+          position: relative;
+          transform: none;
+        }
+        
+        #switch1:checked ~ .slideContents #slide5,
+        #switch1:checked ~ .slideContents #slide4,
+        #switch2:checked ~ .slideContents #slide1,
+        #switch2:checked ~ .slideContents #slide5,
+        #switch3:checked ~ .slideContents #slide2,
+        #switch3:checked ~ .slideContents #slide1,
+        #switch4:checked ~ .slideContents #slide3,
+        #switch4:checked ~ .slideContents #slide2,
+        #switch5:checked ~ .slideContents #slide4,
+        #switch5:checked ~ .slideContents #slide3{
+          transform: translateX(-100%);
+        }
+        
+        #switch1:checked ~ .slideContents #slide3,
+        #switch1:checked ~ .slideContents #slide4,
+        #switch2:checked ~ .slideContents #slide4,
+        #switch2:checked ~ .slideContents #slide5,
+        #switch3:checked ~ .slideContents #slide5,
+        #switch3:checked ~ .slideContents #slide1,
+        #switch4:checked ~ .slideContents #slide1,
+        #switch4:checked ~ .slideContents #slide2,
+        #switch5:checked ~ .slideContents #slide2,
+        #switch5:checked ~ .slideContents #slide3{
+          transition-duration: 0s;
+        }
+        /*:::::::: arrow machenism ::::::*/
+        
+        .arrow label {
+          pointer-events: none;
+        }
+        #switch1:checked ~ .prev label[for="switch5"],
+        #switch2:checked ~ .prev label[for="switch1"],
+        #switch3:checked ~ .prev label[for="switch2"],
+        #switch4:checked ~ .prev label[for="switch3"],
+        #switch5:checked ~ .prev label[for="switch4"],
+        #switch1:checked ~ .next label[for="switch2"],
+        #switch2:checked ~ .next label[for="switch3"],
+        #switch3:checked ~ .next label[for="switch4"],
+        #switch4:checked ~ .next label[for="switch5"],
+        #switch5:checked ~ .next label[for="switch1"]{
+            pointer-events: auto;
+        }

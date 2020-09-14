@@ -1,0 +1,208 @@
+  <!DOCTYPE html>
+  <html lang="ja">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      <style>
+        .slideshow {
+          position: relative;
+          overflow: hidden;
+        }
+        input[name="slideshow"] {
+          display: none;
+        }
+        
+        /*::::::::: slideContents :::::::*/
+        .slideContents {
+          
+          position: relative;
+          
+          background: lightSeaGreen;
+          text-align: center;
+          -webkit-user-select: none;
+          user-select: none;
+          
+          transition: transform .6s;
+        }
+        .slideContents section {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          transform: translateX(100%);
+          transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+      
+        .slideContents section img {
+          max-width: 100%;
+          padding: 0 50px;
+          box-sizing: border-box;
+          vertical-align: middle;
+        }
+        
+        /*:::::::arrows:::::::*/
+        .arrow,
+        .arrow label,
+        .arrow .ico {
+          position: absolute;
+        }
+        .arrow {
+          top: 0;
+          margin: 0;
+          transition: background .3s;
+        }
+        .prev {
+          left: 0;
+        }
+        .next {
+          right: 0;
+        }
+        .arrow:hover {
+          background: rgba(255,255,255,.2);
+          
+          
+        }
+        .arrow,
+        .arrow label {
+          cursor: pointer;
+          width: 50px;
+          height: 100%;
+        }
+        .arrow label {
+          top: 0;
+          left: 0;
+          z-index: 1;
+        }
+        .arrow .ico {
+          top: calc(50% - 6px);
+          width: 12px;
+          height: 12px;
+          border-top: 3px solid #fff;
+          opacity: 0;
+        }
+        .prev .ico{
+          left: 50%;
+          border-left: 3px solid #fff;
+          transform: rotate(-45deg);
+          transition: left .3s cubic-bezier(0.215, 0.61, 0.355,1),opacity .3s;
+        }
+        .next .ico {
+          right: 50%;
+          border-right: 3px solid #fff;
+          transform: rotate(45deg);
+          transition: right .3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity .3s;
+        }
+        .arrow:hover .ico{
+          opacity: .6;
+        }
+        .prev:hover .ico {
+          left: calc(50% - 6px);
+        }
+        .next:hover .ico {
+          right: calc(50% - 6px);
+        }
+        
+        /*:::::: mechanism ::::::*/
+        #switch1:checked ~ .slideContents #slide1,
+        #switch2:checked ~ .slideContents #slide2,
+        #switch3:checked ~ .slideContents #slide3,
+        #switch4:checked ~ .slideContents #slide4,
+        #switch5:checked ~ .slideContents #slide5{
+          position: relative;
+          transform: none;
+        }
+        
+        #switch1:checked ~ .slideContents #slide5,
+        #switch1:checked ~ .slideContents #slide4,
+        #switch2:checked ~ .slideContents #slide1,
+        #switch2:checked ~ .slideContents #slide5,
+        #switch3:checked ~ .slideContents #slide2,
+        #switch3:checked ~ .slideContents #slide1,
+        #switch4:checked ~ .slideContents #slide3,
+        #switch4:checked ~ .slideContents #slide2,
+        #switch5:checked ~ .slideContents #slide4,
+        #switch5:checked ~ .slideContents #slide3{
+          transform: translateX(-100%);
+        }
+        
+        #switch1:checked ~ .slideContents #slide3,
+        #switch1:checked ~ .slideContents #slide4,
+        #switch2:checked ~ .slideContents #slide4,
+        #switch2:checked ~ .slideContents #slide5,
+        #switch3:checked ~ .slideContents #slide5,
+        #switch3:checked ~ .slideContents #slide1,
+        #switch4:checked ~ .slideContents #slide1,
+        #switch4:checked ~ .slideContents #slide2,
+        #switch5:checked ~ .slideContents #slide2,
+        #switch5:checked ~ .slideContents #slide3{
+          transition-duration: 0s;
+        }
+        /*:::::::: arrow machenism ::::::*/
+        
+        .arrow label {
+          pointer-events: none;
+        }
+        #switch1:checked ~ .prev label[for="switch5"],
+        #switch2:checked ~ .prev label[for="switch1"],
+        #switch3:checked ~ .prev label[for="switch2"],
+        #switch4:checked ~ .prev label[for="switch3"],
+        #switch5:checked ~ .prev label[for="switch4"],
+        #switch1:checked ~ .next label[for="switch2"],
+        #switch2:checked ~ .next label[for="switch3"],
+        #switch3:checked ~ .next label[for="switch4"],
+        #switch4:checked ~ .next label[for="switch5"],
+        #switch5:checked ~ .next label[for="switch1"]{
+            pointer-events: auto;
+        }
+      </style>
+      <title>slide</title>
+  </head>
+  <body>
+    <div class="slideshow">
+      <input type="radio" name="slideshow" id="switch1" checked>
+      <input type="radio" name="slideshow" id="switch2">
+      <input type="radio" name="slideshow" id="switch3">
+      <input type="radio" name="slideshow" id="switch4">
+      <input type="radio" name="slideshow" id="switch5">
+      <div class="slideContents">
+        <section id="slide1">
+          <img src="images/slide_01.png">
+        </section>
+        <section id="slide2">
+          <img src="images/slide_02.png">
+        </section>
+        <section id="slide3">
+          <img src="images/slide_03.png">
+        </section>
+        <section id="slide4">
+          <img src="images/slide_04.png">
+        </section>
+        <section id="slide5">
+          <img src="images/slide_05.png">
+        </section>
+      </div>
+      <p class="arrow prev">
+      <i class="ico"></i>
+        <label for="switch1"></label>
+        <label for="switch2"></label>
+        <label for="switch3"></label>
+        <label for="switch4"></label>
+        <label for="switch5"></label>
+      
+    </p>
+       <p class="arrow next">
+      <i class="ico"></i>
+        <label for="switch1"></label>
+        <label for="switch2"></label>
+        <label for="switch3"></label>
+        <label for="switch4"></label>
+        <label for="switch5"></label>
+      
+    </p>
+    </div>
+    
+       
+  </body>
+  </html>
